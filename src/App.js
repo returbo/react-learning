@@ -19,20 +19,53 @@ const list = [
     points: 5,
     objectID: 1,
   },
+  {
+    title: 'JS Lerning',
+    url: '#',
+    author: 'Erick Gukalov',
+    num_comments: 0,
+    points: 0,
+    objectID: 2,
+  },
 ];
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list,
+    };
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss(id) {
+    const updateList = this.state.list.filter(item => item.objectID !== id);
+    this.setState({list: updateList});
+  }
+
   render() {
-    return (
-      <div className="App">{list.map(item =>
-            <div className="App" key={item.objectID}>
-              <span>
-                <a href={item.url}>{item.title}</a>
-              </span>
-              <span> {item.author}</span>
-              <span> {item.num_comments}</span>
-              <span> {item.points}</span>
-            </div>
+    return ( 
+      <div className="App">
+        {this.state.list.map(item =>
+          <div key={item.objectID}>
+            <span>
+              <a href={item.url}>{item.title} -</a>
+            </span>
+            <span> {item.author}</span>
+            <div>Comments: {item.num_comments}</div>
+            <div>Points: {item.points}</div>
+            <span>
+              <button
+                onClick={() => this.onDismiss(item.objectID)}
+                type="button"
+              >
+                Отбросить
+              </button>
+            </span>
+            <br />
+          </div>
         )}
       </div>
     );
