@@ -1,6 +1,14 @@
 .App {
-  text-align: center;
-  color: black;
+  margin-left: 100px;
+  text-align: left;
+  color: rgb(192, 60, 60);
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.App a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .App-logo {
