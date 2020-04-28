@@ -60,16 +60,18 @@ class App extends Component {
   }
 
   render() {
+    const { list, searchTerm} = this.state;
     return (
       <div className="App">
         <form>
           <input
             type="text"
+            value={searchTerm}
             onChange={this.onSearchChange}
           />
         </form>
 
-        {this.state.list.filter(isSearched(this.state.searchTerm))
+        {list.filter(isSearched(searchTerm))
           .map(item =>
             <div key={item.objectID}>
               <span>
@@ -84,7 +86,7 @@ class App extends Component {
                   type="button"
                 >
                   Отбросить
-              </button>
+                </button>
               </span>
               <br />
             </div>
