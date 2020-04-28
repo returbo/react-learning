@@ -29,44 +29,72 @@ const list = [
   },
 ];
 
+const isSearched = searchTerm => item =>
+  item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       list,
+      searchTerm: '',
     };
 
-    this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onClickMe = this.onClickMe.bind(this);
+  }
+
+  onSearchChange(event) {
+    this.setState({ searchTerm: event.target.value });
+  }
+
+  onClickMe() {
+    console.log(this);
   }
 
   onDismiss(id) {
     const updateList = this.state.list.filter(item => item.objectID !== id);
-    this.setState({list: updateList});
+    this.setState({ list: updateList });
   }
 
   render() {
-    return ( 
+    return (
       <div className="App">
-        {this.state.list.map(item =>
-          <div key={item.objectID}>
-            <span>
-              <a href={item.url}>{item.title} -</a>
-            </span>
-            <span> {item.author}</span>
-            <div>Comments: {item.num_comments}</div>
-            <div>Points: {item.points}</div>
-            <span>
-              <button
-                onClick={() => this.onDismiss(item.objectID)}
-                type="button"
-              >
-                Отбросить
+        <form>
+          <input
+            type="text"
+            onChange={this.onSearchChange}
+          />
+        </form>
+
+        {this.state.list.filter(isSearched(this.state.searchTerm))
+          .map(item =>
+            <div key={item.objectID}>
+              <span>
+                <a href={item.url}>{item.title} -</a>
+              </span>
+              <span> {item.author}</span>
+              <div>Comments: {item.num_comments}</div>
+              <div>Points: {item.points}</div>
+              <span>
+                <button
+                  onClick={() => this.onDismiss(item.objectID)}
+                  type="button"
+                >
+                  Отбросить
               </button>
-            </span>
-            <br />
-          </div>
-        )}
+              </span>
+              <br />
+            </div>
+          )}
+
+        <button
+          onClick={this.onClickMe}
+          type="button"
+        >Нажми на меня
+      </button>
       </div>
     );
   }
