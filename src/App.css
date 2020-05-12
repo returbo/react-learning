@@ -1,57 +1,63 @@
-.app {
-  margin-left: 100px;
-  text-align: left;
-  color: rgb(192, 60, 60);
-  font-weight: bold;
-  font-size: 30px;
+.page {
+  margin: 20px;
 }
 
-.app a {
-  text-decoration: none;
-  color: inherit;
+.interactions {
+  text-align: center;
 }
 
 .table {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
-.app a:hover {
-  text-decoration: underline;
+.table-header {
+  display: flex;
+  line-height: 24px;
+  font-size: 16px;
+  padding: 0 10px;
+  justify-content: space-between;
 }
 
-.search-form {
-  color: black;
+.table-empty {
+  margin: 200px;
+  text-align: center;
+  font-size: 16px;
 }
 
-.search-form input {
-  margin-left: 20px;
-  height: 30px;
-  vertical-align: middle;
-  border: 2px solid black;
-  border-radius: 5px;
-  font-size: 20px;
+.table-row {
+  display: flex;
+  line-height: 24px;
+  white-space: nowrap;
+  margin: 10px 0;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
 }
 
-.search-form input:hover {
-  background-color: rgb(246, 246, 246);;
+.table-header>span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
 }
 
-.remove-button {
-  border: 2px solid rgb(192, 60, 60);
-  background-color: white;
-  border-radius: 5px;
-  font-size: 20px;
+.table-row>span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.button-inline {
+  border-width: 0;
+  background: transparent;
   color: inherit;
-  padding: 5px;
+  text-align: inherit;
+  -webkit-font-smoothing: inherit;
+  padding: 0;
+  font-size: inherit;
+  cursor: pointer;
 }
 
-.remove-button:hover {
-  background-color: rgb(192, 60, 60);
-  color: white;
-}
-
-.remove-button:active {
-  background-color: rgba(192, 60, 60, 0.548);
-  color: white;
-  border-color: rgba(192, 60, 60, 0.548);
+.button-active {
+  border-radius: 0;
+  border-bottom: 1px solid #38BB6C;
 }
