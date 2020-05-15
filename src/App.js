@@ -94,6 +94,7 @@ class App extends Component {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
+      error: null,
     };
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
@@ -121,7 +122,7 @@ class App extends Component {
       ...oldHits,
       ...hits
     ];
-    
+
     this.setState({
       results: {
         ...results,
@@ -134,7 +135,7 @@ class App extends Component {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(responce => responce.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(error => error);
+      .catch(error => this.setState({ error }));
   }
 
   onSearchSubmit(event) {
@@ -162,8 +163,8 @@ class App extends Component {
     const updatedHits = hits.filter(isNotId);
 
     this.setState({
-      results: { 
-        ...results, 
+      results: {
+        ...results,
         [searchKey]: { hits: updatedHits, page }
       }
     });
@@ -180,7 +181,8 @@ class App extends Component {
     const {
       searchTerm,
       results,
-      searchKey
+      searchKey,
+      error
     } = this.state;
 
     const page = (
@@ -208,10 +210,17 @@ class App extends Component {
           </Search>
         </div>
         <Header />
-        <Table
-          list={list}
-          onDismiss={this.onDismiss}
-        />
+
+        { error
+          ? <div className="interactions">
+            <p>SOMETHING WENT WRONG SORRY</p>
+          </div>
+          : <Table
+            list={list}
+            onDismiss={this.onDismiss}
+          />
+        }
+
         <div className="interactions">
           <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
             Больше историй
