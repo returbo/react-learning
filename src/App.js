@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import PropTypes from 'prop-types';
 
-const DEFAULT_QUERY = 'redux';
+const DEFAULT_QUERY = 'java';
 const DEFAULT_HPP = '5';
 
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
@@ -12,21 +12,45 @@ const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
 const PARAM_HPP = 'hitsPerPage=';
 
+const Loading = () =>
+  <div>
+    <div style={{width: 20, margin: 'auto'}}>{Icon()}</div>
+  </div>
 
-const Search = ({ value, onChange, children, className = "", onSubmit }) =>
-  <form className={className} onSubmit={onSubmit}>
+function Icon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      ariaHidden="true"
+      className="svg-inline--fa fa-angle-double-down fa-w-10"
+      data-icon="angle-double-down"
+      data-prefix="fas"
+      viewBox="0 0 320 512"
+    >
+      <path
+        fill="currentColor"
+        d="M143 256.3L7 120.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0L313 86.3c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.4 9.5-24.6 9.5-34 .1zm34 192l136-136c9.4-9.4 9.4-24.6 0-33.9l-22.6-22.6c-9.4-9.4-24.6-9.4-33.9 0L160 352.1l-96.4-96.4c-9.4-9.4-24.6-9.4-33.9 0L7 278.3c-9.4 9.4-9.4 24.6 0 33.9l136 136c9.4 9.5 24.6 9.5 34 .1z"
+      ></path>
+    </svg>
+  );
+}
+
+
+
+const Search = ({ value, onChange, children, onSubmit }) =>
+  <form onSubmit={onSubmit}>
     <span>
     </span>
     <input
       type="text"
       value={value}
-      className={className}
       onChange={onChange}
     />
     <button type="submit">
       {children}
     </button>
-  </form>;
+  </form>
+
 
 Search.propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -123,6 +147,7 @@ class App extends Component {
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
       error: null,
+      isLoading: false,
     };
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
@@ -155,11 +180,14 @@ class App extends Component {
       results: {
         ...results,
         [searchKey]: { hits: updatedHits, page }
-      }
+      },
+      isLoading: false
     });
   }
 
   fetchSearchTopStories(searchTerm, page = 0) {
+    this.setState({ isLoading: true });
+
     axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(result => this._isMounted && this.setSearchTopStories(result.data))
       .catch(error => this._isMounted && this.setState({ error }));
@@ -213,7 +241,8 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
-      error
+      error,
+      isLoading
     } = this.state;
 
     const page = (
@@ -242,7 +271,7 @@ class App extends Component {
         </div>
         <Header />
 
-        { error
+        {error
           ? <div className="interactions">
             <p>SOMETHING WENT WRONG SORRY</p>
           </div>
@@ -253,9 +282,12 @@ class App extends Component {
         }
 
         <div className="interactions">
-          <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-            Больше историй
-          </Button>
+          {isLoading
+            ? <Loading />
+            : <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+              Больше историй
+              </Button>
+          }
         </div>
       </div>
     );
