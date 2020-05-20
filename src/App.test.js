@@ -68,6 +68,7 @@ describe('Button', () => {
     const tree = component.toJSON(); 
     expect(tree).toMatchSnapshot();
   });
+
 });
 
 
@@ -78,6 +79,7 @@ describe('Table', () => {
     list: [
       { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
       { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
+      { title: '3', author: '3', num_comments: 1, points: 2, objectID: 'x' },
     ],
   };
 
@@ -95,12 +97,12 @@ describe('Table', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('показывает два элемента списка', () => {
+  it('показывает три элемента списка', () => {
     const element = shallow(
       <Table { ...props } />
     );
 
-    expect(element.find('.table-row').length).toBe(2);
+    expect(element.find('.table-row').length).toBe(3);
   });
 
 });

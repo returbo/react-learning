@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import PropTypes from 'prop-types';
 
 const DEFAULT_QUERY = 'redux';
 const DEFAULT_HPP = '5';
@@ -12,8 +13,6 @@ const PARAM_PAGE = 'page=';
 const PARAM_HPP = 'hitsPerPage=';
 
 
-
-
 const Search = ({ value, onChange, children, className = "", onSubmit }) =>
   <form className={className} onSubmit={onSubmit}>
     <span>
@@ -21,12 +20,22 @@ const Search = ({ value, onChange, children, className = "", onSubmit }) =>
     <input
       type="text"
       value={value}
+      className={className}
       onChange={onChange}
     />
     <button type="submit">
       {children}
     </button>
   </form>;
+
+Search.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
+
 
 const Header = () =>
   <div className="table">
@@ -46,6 +55,8 @@ const Header = () =>
       <span style={{ width: '10%' }} />
     </div>
   </div>
+
+
 
 const Table = ({ list, onDismiss }) =>
   <div className="table">
@@ -77,6 +88,13 @@ const Table = ({ list, onDismiss }) =>
     )}
   </div>
 
+Table.propTypes = {
+  list: PropTypes.array.isRequired,
+  onDismiss: PropTypes.func.isRequired,
+}
+
+
+
 const Button = ({ onClick, className = "", children }) =>
   <button
     onClick={onClick}
@@ -85,6 +103,14 @@ const Button = ({ onClick, className = "", children }) =>
   >
     {children}
   </button>
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+
+
 
 class App extends Component {
   _isMounted = false;
@@ -244,3 +270,4 @@ export {
   Search,
   Table,
 }
+

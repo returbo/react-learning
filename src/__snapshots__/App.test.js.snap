@@ -13,6 +13,7 @@ exports[`App есть корректный снимок 1`] = `
     >
       <span />
       <input
+        className="search-form"
         onChange={[Function]}
         type="text"
         value="redux"
@@ -107,6 +108,7 @@ exports[`Search есть корректный снимок 1`] = `
 >
   <span />
   <input
+    className=""
     type="text"
   />
   <button
@@ -200,6 +202,63 @@ exports[`Table есть корректный снимок 1`] = `
       }
     >
       2
+    </span>
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    >
+      1
+    </span>
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    >
+      2
+    </span>
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Удалить
+      </button>
+    </span>
+  </div>
+  <div
+    className="table-row"
+  >
+    <span
+      style={
+        Object {
+          "width": "40%",
+        }
+      }
+    >
+      <a>
+        3
+      </a>
+    </span>
+    <span
+      style={
+        Object {
+          "width": "30%",
+        }
+      }
+    >
+      3
     </span>
     <span
       style={
