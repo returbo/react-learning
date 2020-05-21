@@ -81,8 +81,9 @@ describe('Table', () => {
       { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
       { title: '3', author: '3', num_comments: 1, points: 2, objectID: 'x' },
     ],
+    sortKey: 'TITLE',
+    isSortReverse: false,
   };
-
 
   it('отрисовывает без ошибки', () => {
     const div = document.createElement('div');

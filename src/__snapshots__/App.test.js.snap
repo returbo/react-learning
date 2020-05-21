@@ -8,15 +8,13 @@ exports[`App есть корректный снимок 1`] = `
     className="interactions"
   >
     <form
-      className="search-form"
       onSubmit={[Function]}
     >
       <span />
       <input
-        className="search-form"
         onChange={[Function]}
         type="text"
-        value="redux"
+        value="java"
       />
       <button
         type="submit"
@@ -29,7 +27,7 @@ exports[`App есть корректный снимок 1`] = `
     className="table"
   >
     <div
-      className="table-row"
+      className="table-header"
     >
       <span
         style={
@@ -38,7 +36,13 @@ exports[`App есть корректный снимок 1`] = `
           }
         }
       >
-        OBJECT
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          OBJECT
+        </button>
       </span>
       <span
         style={
@@ -47,7 +51,13 @@ exports[`App есть корректный снимок 1`] = `
           }
         }
       >
-        AUTHOR
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          AUTHOR
+        </button>
       </span>
       <span
         style={
@@ -56,7 +66,13 @@ exports[`App есть корректный снимок 1`] = `
           }
         }
       >
-        COMMENTS
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          COMMENTS
+        </button>
       </span>
       <span
         style={
@@ -65,7 +81,13 @@ exports[`App есть корректный снимок 1`] = `
           }
         }
       >
-        POINTS
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          POINTS
+        </button>
       </span>
       <span
         style={
@@ -77,18 +99,13 @@ exports[`App есть корректный снимок 1`] = `
     </div>
   </div>
   <div
-    className="table"
-  />
-  <div
     className="interactions"
   >
-    <button
-      className=""
-      onClick={[Function]}
-      type="button"
-    >
-      Больше историй
-    </button>
+    <div>
+      <div>
+        Загрузка...
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -103,12 +120,9 @@ exports[`Button есть корректный снимок 1`] = `
 `;
 
 exports[`Search есть корректный снимок 1`] = `
-<form
-  className=""
->
+<form>
   <span />
   <input
-    className=""
     type="text"
   />
   <button
@@ -123,6 +137,77 @@ exports[`Table есть корректный снимок 1`] = `
 <div
   className="table"
 >
+  <div
+    className="table-header"
+  >
+    <span
+      style={
+        Object {
+          "width": "40%",
+        }
+      }
+    >
+      <button
+        className="button-inline button-active"
+        onClick={[Function]}
+        type="button"
+      >
+        OBJECT
+      </button>
+    </span>
+    <span
+      style={
+        Object {
+          "width": "30%",
+        }
+      }
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        AUTHOR
+      </button>
+    </span>
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        COMMENTS
+      </button>
+    </span>
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        POINTS
+      </button>
+    </span>
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    />
+  </div>
   <div
     className="table-row"
   >
