@@ -5,14 +5,18 @@ import './App.css';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const DEFAULT_QUERY = 'java';
-const DEFAULT_HPP = '5';
 
-const PATH_BASE = 'https://hn.algolia.com/api/v1';
-const PATH_SEARCH = '/search';
-const PARAM_SEARCH = 'query=';
-const PARAM_PAGE = 'page=';
-const PARAM_HPP = 'hitsPerPage=';
+import {
+  DEFAULT_QUERY,
+  DEFAULT_HPP,
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+  PARAM_PAGE,
+  PARAM_HPP,
+  } from './constants';
+  import Search from './components/Search';
+
 
 const SORTS = {
   NONE: list => list,
@@ -20,28 +24,6 @@ const SORTS = {
   AUTHOR: list => sortBy(list, 'author'),
   COMMENTS: list => sortBy(list, 'num_comments').reverse(),
   POINTS: list => sortBy(list, 'points').reverse(),
-}
-
-
-const Search = ({ value, onChange, children, onSubmit }) =>
-  <form onSubmit={onSubmit}>
-    <span>
-    </span>
-    <input
-      type="text"
-      value={value}
-      onChange={onChange}
-    />
-    <button type="submit">
-      {children}
-    </button>
-  </form>
-
-Search.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
 }
 
 
@@ -148,9 +130,6 @@ class Table extends Component {
     );
   }
 }
-
-
-
 
 Table.propTypes = {
   list: PropTypes.array.isRequired,
