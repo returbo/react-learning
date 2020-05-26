@@ -15,7 +15,8 @@ import {
   PARAM_PAGE,
   PARAM_HPP,
   } from './constants';
-  import Search from './components/Search';
+import Search from './components/Search';
+import Button from './components/Button';
 
 
 const SORTS = {
@@ -158,21 +159,6 @@ const Sort = ({
 }
 
 
-
-const Button = ({ onClick, className = "", children }) =>
-  <button
-    onClick={onClick}
-    className={className}
-    type="button"
-  >
-    {children}
-  </button>
-
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
 
 
 
